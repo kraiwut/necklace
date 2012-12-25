@@ -1,3 +1,22 @@
 <%= link_to "New Product", new_admin_product_path, :class => "btn btn-primary" %>
+<br /><br />
 
-<%= render @products %>
+<table id="products" class="table table-striped">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Price</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<%= render @products %>
+	</tbody>
+</table>
+
+<script>
+	$('#products').dataTable({
+	  "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+	  "sPaginationType": "bootstrap"
+	});
+</script>

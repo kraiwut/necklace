@@ -17,4 +17,10 @@ class Admin::ProductsController < AdminController
 		end
 	end
 
+	def destroy
+		product = Product.find(params[:id]).destroy
+		flash[:notice] = "Deleted #{product.name}"
+		redirect_to admin_root_path
+	end
+
 end

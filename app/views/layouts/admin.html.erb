@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Necklace</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= render "shared/flash_message" %>
+<div class="row header"><%= render "layouts/admin_header" %></div>
+<div class="row">
+	<div class="span12 content"><%= yield %></div>
+</div>
+<div class="row footer"><%= render "layouts/footer" %></div>
+
+</body>
+</html>

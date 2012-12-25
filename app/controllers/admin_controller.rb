@@ -1,5 +1,6 @@
 class AdminController < ApplicationController
 	before_filter :admin!
+  layout 'admin'
 
 	def admin!
 		if !current_user || !current_user.is_a?(SiteAdmin)

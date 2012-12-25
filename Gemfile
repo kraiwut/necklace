@@ -11,6 +11,7 @@ gem 'cancan'
 gem 'audited-activerecord', '~> 3.0'
 gem 'countries'
 gem 'state_machine'
+gem 'jquery-datatables-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -1,1 +1,8 @@
-<%= product.name %>
+<%= content_tag_for :tr, product do %>
+	<td><%= product.name %></td>
+	<td><%= product.price %></td>
+	<td>
+		<%= link_to "Delete", admin_product_path(:id => product), 
+									:method => :delete, :class => "btn btn-danger" %>
+	</td>
+<% end %>
