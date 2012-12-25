@@ -1,0 +1,2 @@
+class SiteAdmin < User
+end
