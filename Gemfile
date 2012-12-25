@@ -10,6 +10,7 @@ gem 'devise'
 gem 'cancan'
 gem 'audited-activerecord', '~> 3.0'
 gem 'countries'
+gem 'state_machine'
 
 # Gems used only for assets and not required
 # in production environments by default.
