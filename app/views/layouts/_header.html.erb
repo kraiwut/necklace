@@ -14,7 +14,10 @@
         	<% if current_user %>
 	          <li><a href="#">Setting</a></li>
 	          <li class="divider"></li>
-	          <li><a href="#">Logout</a></li>
+	          <li>
+	          	<%= link_to "Sign out", destroy_user_session_path, 
+	          														:method => :delete %>
+	          </li>
           <% else %>
 	          <li><%= link_to "Sign in", new_user_session_path %></li>
           <% end %>

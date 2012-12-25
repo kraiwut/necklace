@@ -11,6 +11,9 @@ class User < ActiveRecord::Base
 
   USERNAME_GUEST = "Guest"
 
+  validates :username, :presence => {:on => :create},
+            :length => { :minimum => 3, :maximum => 255 }
+
 	state_machine :state, :initial => :pending do
 
 		event :activate do
