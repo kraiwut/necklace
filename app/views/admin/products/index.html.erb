@@ -1,4 +1,5 @@
-<%= link_to "New Product", new_admin_product_path, :class => "btn btn-primary" %>
+<%= link_to "New Product", new_admin_category_product_path(@category), 
+							:class => "btn btn-primary" %>
 <br /><br />
 
 <table id="products" class="table table-striped">
@@ -10,7 +11,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<%= render @products %>
+		<%= render @products, :category => @category %>
 	</tbody>
 </table>
 
