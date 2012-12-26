@@ -6,6 +6,7 @@ class Admin::ProductsController < AdminController
 		else
 			@category = get_home_category
 		end
+		@children = @category.children
 		@products = @category.products
 	end
 
@@ -42,7 +43,7 @@ class Admin::ProductsController < AdminController
 	def destroy
 		@category = get_category
 		@product = get_product.destroy
-		flash[:notice] = "Deleted #{product.name}"
+		flash[:notice] = "Deleted #{@product.name}"
 		redirect_to admin_category_products_path(@category)
 	end
 

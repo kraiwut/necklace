@@ -1,0 +1,10 @@
+<%= content_tag_for :tr, category do %>
+	<td>
+		<%= image_tag 'icons/folder-icon-20x20.png' %>&nbsp;&nbsp;
+		<%= link_to category.name, admin_category_products_path(category) %>
+	</td>
+	<td>
+		<%= link_to "Delete", admin_category_path(category), 
+									:method => :delete, :class => "btn btn-small btn-danger" %>
+	</td>
+<% end %>

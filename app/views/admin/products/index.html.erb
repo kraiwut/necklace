@@ -1,13 +1,42 @@
-<%= link_to "New Product", new_admin_category_product_path(@category), 
-							:class => "btn btn-primary" %>
-<br /><br />
+<div class="row">
+	<div class="span6">
+		<% if @category.parent %>
+			<%= link_to "Back", admin_category_products_path(@category.parent), 
+										:class => "btn btn-warning" %>
+		<% end %>
+	</div>
+	<div class="span6" style="text-align:right">
+		<%= link_to "New Category", 
+								new_admin_category_path(:parent_id => @category.id), 
+									:class => "btn btn-primary" %>
+		<%= link_to "New Product", 
+								new_admin_category_product_path(@category), 
+									:class => "btn btn-primary" %>
+	</div>
+</div>
+<br />
+
+<% unless @children.empty? %>
+	<table id="categories" class="table table-striped">
+		<thead>
+			<tr>
+				<th>Subcategory</th>
+				<th class="actions-td">Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<%= render @children %>
+		</tbody>
+	</table>
+<% end %>
+<br />
 
 <table id="products" class="table table-striped">
 	<thead>
 		<tr>
-			<th>Name</th>
+			<th>Product</th>
 			<th>Price</th>
-			<th></th>
+			<th class="actions-td">Actions</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -16,8 +45,24 @@
 </table>
 
 <script>
+	$('#categories').dataTable({
+	  "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+			"sPaginationType": "bootstrap",
+	  <% if @category.children.count < 5 %>
+			"bPaginate": false,
+			"bFilter": false,
+			"bSort": false,
+			"bInfo": false,
+		<% end %>
+	});
 	$('#products').dataTable({
 	  "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
-	  "sPaginationType": "bootstrap"
+			"sPaginationType": "bootstrap",
+	  <% if @category.products.count < 5 %>
+			"bPaginate": false,
+			"bFilter": false,
+			"bSort": false,
+			"bInfo": false,
+		<% end %>
 	});
 </script>
