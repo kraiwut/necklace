@@ -13,6 +13,7 @@ class Admin::ProductsController < AdminController
 	def new
 		@category = get_category
 		@product = @category.products.build
+		@product.images.build
 	end
 
 	def create
