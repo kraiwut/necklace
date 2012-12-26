@@ -11,4 +11,6 @@ Necklace::Application.routes.draw do
 
   root :to => "products#index"
 
+  mount Ckeditor::Engine => "/ckeditor"
+
 end

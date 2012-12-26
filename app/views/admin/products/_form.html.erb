@@ -3,7 +3,7 @@
 	<%= f.text_field :name %>
 
 	<%= f.label :description %>
-	<%= f.text_area :description %>
+	<%= f.cktext_area :description, :input_html => {:cols => 10} %>
 
 	<%= f.label :price %>
 	<%= f.number_field :price, :min => 0 %>
