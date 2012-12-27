@@ -32,6 +32,9 @@
 
 <script>
 	$('#products').dataTable({
+			"aoColumnDefs": [
+	      { "bSortable": false, "aTargets": [ 0, 3 ] }
+	    ],
 			"sPaginationType": "bootstrap",
 	  <% if @category.products.count < 5 %>
 			"bPaginate": false,
