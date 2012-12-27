@@ -1,71 +1,37 @@
 <div class="row">
-	<div class="span6">
-		<% if @category.parent %>
-			<%= link_to "Back", admin_category_products_path(@category.parent), 
-										:class => "btn btn-warning" %>
-		<% end %>
+	<div class="span3">
+		<%= render 'admin/categories/tree' %>
 	</div>
-	<div class="span6" style="text-align:right">
-		<%= link_to "New Category", 
-								new_admin_category_path(:parent_id => @category.id), 
-									:class => "btn btn-primary" %>
+	<div class="span9">
+		<div class="row">
+			<div class="span4">
+			</div>
+			<div class="span5" style="text-align:right">
+				<%= link_to "New Product", 
+										new_admin_category_product_path(@category), 
+											:class => "btn btn-primary" %>
+			</div>
+		</div>
+		<br />
+
+		<table id="products" class="table admin-table table-striped">
+			<thead>
+				<tr>
+					<th style="text-align:center;width:100px">Cover</th>
+					<th>Product</th>
+					<th style="text-align:center;width:100px">Price</th>
+					<th style="text-align:center;width:130px">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<%= render @products, :category => @category %>
+			</tbody>
+		</table>
 	</div>
 </div>
-<br />
-
-<% unless @children.empty? %>
-	<table id="categories" class="table admin-table table-striped">
-		<thead>
-			<tr>
-				<th>Subcategory</th>
-				<th class="actions-td">Actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			<%= render @children %>
-		</tbody>
-	</table>
-	<br />
-<% end %>
-
-<div class="row">
-	<div class="span6">
-	</div>
-	<div class="span6" style="text-align:right">
-		<%= link_to "New Product", 
-								new_admin_category_product_path(@category), 
-									:class => "btn btn-primary" %>
-	</div>
-</div>
-<br />
-
-<table id="products" class="table admin-table table-striped">
-	<thead>
-		<tr>
-			<th>Cover</th>
-			<th>Product</th>
-			<th>Price</th>
-			<th class="actions-td">Actions</th>
-		</tr>
-	</thead>
-	<tbody>
-		<%= render @products, :category => @category %>
-	</tbody>
-</table>
 
 <script>
-	$('#categories').dataTable({
-	  "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
-			"sPaginationType": "bootstrap",
-	  <% if @category.children.count < 5 %>
-			"bPaginate": false,
-			"bFilter": false,
-			"bSort": false,
-			"bInfo": false,
-		<% end %>
-	});
 	$('#products').dataTable({
-	  "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
 			"sPaginationType": "bootstrap",
 	  <% if @category.products.count < 5 %>
 			"bPaginate": false,

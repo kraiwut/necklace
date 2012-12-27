@@ -4,4 +4,9 @@ class Category < ActiveRecord::Base
   has_many :products
   has_many :children, :class_name => Category.name, :foreign_key => :parent_id
   belongs_to :parent, :class_name => Category.name, :foreign_key => :parent_id
+
+  def self.root
+  	where(:parent_id => nil).first
+  end
+
 end
