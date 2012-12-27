@@ -2,13 +2,13 @@ module ProductsSpecHelper
 
 	# cat1
 	# 	|- cat1.1
-	# 			|- prod1.1.1
+	# 	|		|- prod1.1.1
 	# 	|- prod1.1
 	# 	|- prod1.2
 	# cat2
 	# 	|- cat2.1
-	# 			|- prod2.1.1
-	# 			|- prod2.1.2
+	# 	|		|- prod2.1.1
+	# 	|		|- prod2.1.2
 	# 	|- cat2.2
 	# 	|- cat2.3
 	# 	|- cat2.4
