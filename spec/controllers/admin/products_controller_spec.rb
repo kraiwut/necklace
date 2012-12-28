@@ -49,4 +49,61 @@ describe Admin::ProductsController  do
 
 	end
 
+	describe "#create" do
+
+		it "should create a new product" do
+			home_category
+			_before = Product.count
+			get "create", :category_id => home_category, 
+										:product => { :name => "Prod",
+																	:description => "Desc prod",
+																	:price => 1000 }
+			Product.count.should == _before + 1
+		end
+
+		it "should redirect to category screen" do
+			get "create", :category_id => home_category, 
+										:product => { :name => "Prod",
+																	:description => "Desc prod",
+																	:price => 1000 }
+			response.should redirect_to admin_category_products_path(home_category)
+		end
+
+		it "should return error if name is blank" do
+			get "create", :category_id => home_category, 
+										:product => { :name => "",
+																	:description => "Desc prod",
+																	:price => 1000 }
+			flash[:alert].should match(/^Could not create a new product!/)
+			response.should render_template "new"
+		end
+
+		it "should return error if price is blank" do
+			get "create", :category_id => home_category, 
+										:product => { :name => "Prod",
+																	:description => "Desc prod",
+																	:price => "" }
+			flash[:alert].should match(/^Could not create a new product!/)
+			response.should render_template "new"
+		end
+
+	end
+
+	describe "#edit" do
+		it "should be able to edit" do
+			category = home_category.children.first
+			get "edit", :category_id => category, :id => category.products.first
+			response.should render_template("edit")
+		end
+	end
+
+	describe "#destroy" do
+		it "should be able to destroy product" do
+			category = home_category.children.first
+			_before = Product.count
+			get "destroy", :category_id => category, :id => category.products.first
+			Product.count.should == _before - 1
+		end
+	end
+
 end

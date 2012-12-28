@@ -21,6 +21,7 @@ class Admin::ProductsController < AdminController
 		if @product.save
 			redirect_to admin_category_products_path(@category)
 		else
+			flash[:alert] = "Could not create a new product!\n#{record_invalid_error_message(@product)}"
 			render "new"
 		end
 	end
@@ -30,7 +31,7 @@ class Admin::ProductsController < AdminController
 		@product = get_product
 	end
 
-	def  update
+	def update
 		@category = get_category
 		@product = get_product
 		if @product.update_attributes(params[:product])

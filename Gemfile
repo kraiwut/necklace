@@ -36,6 +36,7 @@ group :test do
 	gem 'machinist'
 	gem 'simplecov', :require => false
   gem 'email_spec'
+  gem 'nokogiri'
 end
 
 group :test, :development do
