@@ -1,0 +1,13 @@
+<%= form_for ["admin", @category] do |f| %>
+	<%= f.hidden_field :parent_id %>
+	
+	<%= f.label :name %>
+	<%= f.text_field :name %>
+
+	<%= f.label :parent_id, "Parent" %>
+	<%= f.select :parent_id, 
+								options_for_select(	@categories.collect{|c| [c.parent_and_self_name, c.id]}, 
+																		@parent.id ) %>
+
+	<%= f.submit %>
+<% end %>

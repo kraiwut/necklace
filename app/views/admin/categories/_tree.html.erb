@@ -1,0 +1,21 @@
+<div class="btn-group">
+  <a class="btn dropdown-toggle btn-primary" data-toggle="dropdown" href="#">
+	  Categories
+	  <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu">
+	  <li>
+	  	<%= link_to "New Category", 
+									new_admin_category_path(:parent_id => @category.id) %>
+	  </li>
+  </ul>
+</div>
+<br />
+<ul id="browser" class="filetree treeview">
+	<%= render_categories_tree %>
+</ul>
+<script>
+$("#browser").treeview({
+	collapsed: false
+});
+</script>

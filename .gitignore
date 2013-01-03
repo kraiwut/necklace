@@ -14,5 +14,6 @@
 /log/*.log
 /tmp
 /coverage
+/public/uploads
 
 config/database.yml

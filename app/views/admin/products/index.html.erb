@@ -1,3 +1,54 @@
-<%= link_to "New Product", new_admin_product_path, :class => "btn btn-primary" %>
+<div class="row">
+	<div class="span3">
+		<%= render 'admin/categories/tree' %>
+	</div>
+	<div class="span9">
+		<div class="row">
+			<div class="span4">
+				<div class="btn-group">
+					<% if @category.parent %>
+						<%= link_to "<< #{@category.parent.name}", 
+												admin_category_products_path(@category.parent),
+												:class => "btn btn-warning" %>
+					<% end %>
+						<button class="btn" disabled="true"><%= @category.name %></button>
+				</div>
+			</div>
+			<div class="span5" style="text-align:right">
+				<%= link_to "New Product", 
+										new_admin_category_product_path(@category), 
+											:class => "btn btn-primary" %>
+			</div>
+		</div>
+		<br />
 
-<%= render @products %>
+		<table id="products" class="table admin-table table-striped">
+			<thead>
+				<tr>
+					<th style="text-align:center;width:100px">Cover</th>
+					<th>Product</th>
+					<th style="text-align:center;width:100px">Price</th>
+					<th style="text-align:center;width:130px">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<%= render @products, :category => @category %>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<script>
+	$('#products').dataTable({
+			"aoColumnDefs": [
+	      { "bSortable": false, "aTargets": [ 0, 3 ] }
+	    ],
+			"sPaginationType": "bootstrap",
+	  <% if @category.products.count < 5 %>
+			"bPaginate": false,
+			"bFilter": false,
+			"bSort": false,
+			"bInfo": false,
+		<% end %>
+	});
+</script>

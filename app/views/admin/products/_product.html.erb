@@ -1,1 +1,12 @@
-<%= product.name %>
+<%= content_tag_for :tr, product do %>
+	<td class="img-td"><%= display_cover(product) %></td>
+	<td>
+		<%= link_to product.name, 
+									edit_admin_category_product_path(category, product) %>
+	</td>
+	<td class="real-number-td"><%= product.price %></td>
+	<td class="action-td">
+		<%= link_to "Delete", admin_category_product_path(category, product), 
+									:method => :delete, :class => "btn btn-small btn-danger" %>
+	</td>
+<% end %>

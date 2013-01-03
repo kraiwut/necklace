@@ -1,0 +1,19 @@
+<%= form_for ["admin", @category, @product], :html => {:multipart => true} do |f| %>
+	<%= f.label :name %>
+	<%= f.text_field :name %>
+
+	<%= f.label :description %>
+	<%= f.cktext_area :description, :input_html => {:cols => 10} %>
+
+	<% if defined?(attachable) && (attachable) %>
+		<%= f.fields_for :images do |img_f| %>
+			<%= img_f.label :file %>
+			<%= img_f.file_field :file %>
+		<% end %>
+	<% end %>
+
+	<%= f.label :price %>
+	<%= f.number_field :price, :min => 0 %>
+
+	<%= f.submit %>
+<% end %>
