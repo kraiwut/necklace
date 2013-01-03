@@ -37,6 +37,7 @@ class Admin::ProductsController < AdminController
 		if @product.update_attributes(params[:product])
 			redirect_to admin_category_products_path(@category)
 		else
+			flash[:alert] = "Could not edit product!\n#{record_invalid_error_message(@product)}"
 			render 'edit'
 		end
 	end

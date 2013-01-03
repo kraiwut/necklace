@@ -7,8 +7,8 @@ User.blueprint do
   type			{ NormalUser.name }
 end
 
-User.blueprint(:admin) do
-	type { SiteAdmin.name }
+SiteAdmin.blueprint do
+  type			{ SiteAdmin.name }
 end
 
 Category.blueprint do
@@ -20,4 +20,9 @@ Product.blueprint do
 	short_description { "short description" }
 	description 			{ "description" }
 	price							{ 1000 }
+end
+
+Image.blueprint do
+	name { "Cover" }
+	file {"/path/of/file.jpg"}
 end

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Admin::ProductsController  do
-	let(:admin) 					{ User.make! :admin }
+	let(:admin) 					{ SiteAdmin.make! }
 	let!(:home_category)	{ init_home_category }
 
 	before :each do
@@ -94,6 +94,24 @@ describe Admin::ProductsController  do
 			category = home_category.children.first
 			get "edit", :category_id => category, :id => category.products.first
 			response.should render_template("edit")
+		end
+	end
+
+	describe "#update" do
+		it "should be able to update product info" do
+			product = Product.make!(:category => Category.make!)
+			get "update", :category_id => product.category.id, 
+										:id => product.id, 
+										:product => { :name => "edited" }
+			product.reload.name.should == "edited"
+		end
+
+		it "should return error if product's name is blank" do
+			product = Product.make!(:category => Category.make!)
+			get "update", :category_id => product.category.id, 
+										:id => product.id, 
+										:product => { :name => "" }
+			flash[:alert].should == "Could not edit product!\n#{controller.record_invalid_error_message(assigns[:product])}"
 		end
 	end
 

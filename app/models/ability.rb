@@ -8,6 +8,6 @@ class Ability
 			end
 		end
 
-		can :read, :all
+		can :read, Product
 	end
 end
