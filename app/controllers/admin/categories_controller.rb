@@ -2,11 +2,11 @@ class Admin::CategoriesController < AdminController
 
 	def new
 		if params[:parent_id]
-			@parent = Category.find(params[:parent_id])
+			@parent_category = Category.find(params[:parent_id])
 		else
-			@parent = Category.root
+			@parent_category = Category.root
 		end
-		@category = @parent.children.build
+		@category = @parent_category.children.build
 		@categories = Category.all
 	end
 
@@ -21,11 +21,11 @@ class Admin::CategoriesController < AdminController
 	end
 
 	def edit
-		@category = Category.find(params[:id])
+		@category = get_category
 	end
 
 	def destroy
-		@category = Category.find(params[:id])
+		@category = get_category
 		if @category.parent
 			parent_id = @category.parent.id
 			@category.destroy
@@ -36,5 +36,18 @@ class Admin::CategoriesController < AdminController
 		end
 		redirect_to admin_category_products_path(parent_id)
 	end
+
+	def update
+		@category = get_category
+		unless @category.update_attributes(params[:category])
+			flash[:alert] = "Could not edit category!\n#{record_invalid_error_message(@category)}"
+		end
+		redirect_to admin_category_products_path(@category)
+	end
+
+	private
+		def get_category
+			Category.find(params[:id])
+		end
 
 end

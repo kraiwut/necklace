@@ -6,6 +6,10 @@ class Admin::ProductsController < AdminController
 		else
 			@category = get_home_category
 		end
+		unless @category.root?
+			@parent_category = @category.parent
+			@categories = Category.all
+		end
 		@products = @category.products
 	end
 

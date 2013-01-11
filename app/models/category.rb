@@ -11,6 +11,10 @@ class Category < ActiveRecord::Base
   	where(:parent_id => nil).first
   end
 
+  def root?
+    parent_id.nil?
+  end
+
   def parent_and_self_name
   	parent ? "#{parent.name}:#{name}" : name
   end
