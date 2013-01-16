@@ -1,13 +1,23 @@
-<%= form_for ["admin", @category] do |f| %>
+<%= form_for ["admin", @category], :html => {:class => "category-form"} do |f| %>
 	<%= f.hidden_field :parent_id %>
 	
 	<%= f.label :name %>
 	<%= f.text_field :name %>
 
 	<%= f.label :parent_id, "Parent" %>
-	<%= f.select :parent_id, 
-								options_for_select(	@categories.collect{|c| [c.parent_and_self_name, c.id]}, 
-																		@parent.id ) %>
+  <% category_options =   @categories.collect do |c| 
+                            [c.parent_and_self_name, c.id]
+                          end %>
+	<%= f.select :parent_id, options_for_select(category_options, @parent_category.id ) %>
 
-	<%= f.submit %>
+  <br />
+	<%= button_tag (@category.id ? "Update Category" : "Create Category"),
+                  :class => "btn btn-primary",
+                  :type => "submit" %>
+  <% if @category.id %>
+    <%= link_to "Delete", admin_category_path(@category), 
+                  :method => :delete, 
+                  :class => "btn btn-danger", 
+                  :confirm => "Are you sure? All products in this category will also be deleted." %>
+  <% end %>
 <% end %>

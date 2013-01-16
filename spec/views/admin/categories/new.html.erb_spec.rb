@@ -6,8 +6,8 @@ describe "admin/categories/new" do
 
 	it "should be able to select parent category" do
 		sign_in admin
-		@parent = home_category
-		@category = @parent.children.build
+		@parent_category = home_category
+		@category = @parent_category.children.build
 		@categories = Category.all
 
 		render :template => "admin/categories/new"

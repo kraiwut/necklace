@@ -17,10 +17,12 @@
 			<div class="span5" style="text-align:right">
 				<%= link_to "New Product", 
 										new_admin_category_product_path(@category), 
-											:class => "btn btn-primary" %>
+											:class => "btn" %>
 			</div>
 		</div>
 		<br />
+
+		<%= render 'admin/categories/form' unless @category.root? %>
 
 		<table id="products" class="table admin-table table-striped">
 			<thead>

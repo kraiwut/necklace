@@ -6,6 +6,10 @@ class Admin::ProductsController < AdminController
 		else
 			@category = get_home_category
 		end
+		unless @category.root?
+			@parent_category = @category.parent
+			@categories = Category.all
+		end
 		@products = @category.products
 	end
 
@@ -13,6 +17,7 @@ class Admin::ProductsController < AdminController
 		@category = get_category
 		@product = @category.products.build
 		@product.images.build
+		@categories = Category.all
 	end
 
 	def create
@@ -29,6 +34,7 @@ class Admin::ProductsController < AdminController
 	def edit
 		@category = get_category
 		@product = get_product
+		@categories = Category.all
 	end
 
 	def update
