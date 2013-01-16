@@ -10,7 +10,7 @@ module CategoriesHelper
 	private
 		def render_node(category)
 			children_html = ""
-			category.children.each do |child|
+			category.children.order(:created_at).each do |child|
 				children_html += render_node(child) 
 			end
 			children_html = "<ul>#{children_html}</ul>" unless children_html.blank?

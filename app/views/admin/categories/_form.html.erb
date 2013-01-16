@@ -11,5 +11,13 @@
 	<%= f.select :parent_id, options_for_select(category_options, @parent_category.id ) %>
 
   <br />
-	<%= f.submit :class => "btn btn-primary" %>
+	<%= button_tag (@category.id ? "Update Category" : "Create Category"),
+                  :class => "btn btn-primary",
+                  :type => "submit" %>
+  <% if @category.id %>
+    <%= link_to "Delete", admin_category_path(@category), 
+                  :method => :delete, 
+                  :class => "btn btn-danger", 
+                  :confirm => "Are you sure? All products in this category will also be deleted." %>
+  <% end %>
 <% end %>

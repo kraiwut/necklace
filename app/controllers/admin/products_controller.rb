@@ -17,6 +17,7 @@ class Admin::ProductsController < AdminController
 		@category = get_category
 		@product = @category.products.build
 		@product.images.build
+		@categories = Category.all
 	end
 
 	def create
@@ -33,6 +34,7 @@ class Admin::ProductsController < AdminController
 	def edit
 		@category = get_category
 		@product = get_product
+		@categories = Category.all
 	end
 
 	def update
