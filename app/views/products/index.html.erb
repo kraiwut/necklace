@@ -1,0 +1,9 @@
+<table>
+  <% GridView.new(@products, 3).each do |row| %>
+    <tr>
+      <% row.each do |product| %>
+        <td><%= product.name rescue '' %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>

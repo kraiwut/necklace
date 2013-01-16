@@ -11,7 +11,9 @@
 <%= render "shared/flash_message" %>
 <div class="row header"><%= render "layouts/header" %></div>
 <div class="row">
-	<div class="span2 side-panel left-panel"></div>
+	<div class="span2 side-panel left-panel">
+    <%= render 'shared/category_tree' %>
+  </div>
 	<div class="span8 content"><%= yield %></div>
 	<div class="span2 side-panel right-panel"></div>
 </div>
