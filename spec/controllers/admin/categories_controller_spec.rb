@@ -19,14 +19,14 @@ describe Admin::CategoriesController do
 		it "should be able to create subcategory" do
 			parent = home_category.children[1]
 			get "new", :parent_id => parent.id
-			assigns[:parent].should == parent
+			assigns[:parent_category].should == parent
 			assigns[:category].parent_id.should == parent.id
 		end
 
 		it "should have parent category" do
 			home_category
 			get "new"
-			assigns[:parent].should_not be_nil
+			assigns[:parent_category].should_not be_nil
 		end
 	end
 
@@ -61,7 +61,7 @@ describe Admin::CategoriesController do
 			_before = Category.count
 			category = home_category.children[1]
 			get "destroy", :id => home_category.children[1].id
-			Category.count.should == _before - 1
+			Category.count.should == _before - 6 # 1 category + 5 sub-categories
 			flash[:notice].should == "Deleted #{category.name}"
 			expect { category.reload }.to raise_error
 		end
