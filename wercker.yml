@@ -7,7 +7,7 @@ box: ruby
 # You can also use services such as databases. Read more on our dev center:
 # http://devcenter.wercker.com/docs/services/index.html
 services:
-    - postgres
+    - wercker/postgresql
     # http://devcenter.wercker.com/docs/services/postgresql.html
 
     # - mongo
@@ -23,12 +23,12 @@ build:
     steps:
         - bundle-install
         - rails-database-yml
-        - script:
-            name: migrate
-            code: bundle exec rake db:migrate
-        - script:
-            name: prepare test db
-            code: bundle exec rake db:test:preapre
+        # - script:
+        #     name: migrate
+        #     code: bundle exec rake db:migrate
+        # - script:
+        #     name: prepare test db
+        #     code: bundle exec rake db:test:preapre
         - script:
             name: rspec
             code: bundle exec rspec
