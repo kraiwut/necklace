@@ -13,7 +13,7 @@ build:
       code: bundle exec rake db:migrate RAILS_ENV=test
     - script:
       name: rspec
-        code: bundle exec rspec
+      code: bundle exec rspec
 deploy-heroku-dev:
   steps:
     - heroku-deploy:
