@@ -28,8 +28,9 @@ class Admin::CategoriesController < AdminController
 		@category = get_category
 		if @category.parent
 			parent_id = @category.parent.id
+			category_name = @category.name
 			@category.destroy
-			flash[:notice] = "Deleted #{@category.name}"
+			flash[:notice] = "Deleted #{category_name}"
 		else
 			parent_id = @category.id
 			flash[:error] = "Could not delete 'Home' category"

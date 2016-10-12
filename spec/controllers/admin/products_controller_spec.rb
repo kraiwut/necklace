@@ -12,7 +12,7 @@ describe Admin::ProductsController  do
 		before :each do
 			init_home_category
 		end
-	
+
 		it "should not allow normal user" do
 			sign_out admin
 			sign_in User.make!
@@ -54,7 +54,7 @@ describe Admin::ProductsController  do
 		it "should create a new product" do
 			home_category
 			_before = Product.count
-			get "create", :category_id => home_category, 
+			get "create", :category_id => home_category,
 										:product => { :name => "Prod",
 																	:description => "Desc prod",
 																	:price => 1000 }
@@ -62,7 +62,7 @@ describe Admin::ProductsController  do
 		end
 
 		it "should redirect to category screen" do
-			get "create", :category_id => home_category, 
+			get "create", :category_id => home_category,
 										:product => { :name => "Prod",
 																	:description => "Desc prod",
 																	:price => 1000 }
@@ -70,7 +70,7 @@ describe Admin::ProductsController  do
 		end
 
 		it "should return error if name is blank" do
-			get "create", :category_id => home_category, 
+			get "create", :category_id => home_category,
 										:product => { :name => "",
 																	:description => "Desc prod",
 																	:price => 1000 }
@@ -79,7 +79,7 @@ describe Admin::ProductsController  do
 		end
 
 		it "should return error if price is blank" do
-			get "create", :category_id => home_category, 
+			get "create", :category_id => home_category,
 										:product => { :name => "Prod",
 																	:description => "Desc prod",
 																	:price => "" }
@@ -100,16 +100,16 @@ describe Admin::ProductsController  do
 	describe "#update" do
 		it "should be able to update product info" do
 			product = Product.make!(:category => Category.make!)
-			get "update", :category_id => product.category.id, 
-										:id => product.id, 
+			get "update", :category_id => product.category.id,
+										:id => product.id,
 										:product => { :name => "edited" }
 			product.reload.name.should == "edited"
 		end
 
 		it "should return error if product's name is blank" do
 			product = Product.make!(:category => Category.make!)
-			get "update", :category_id => product.category.id, 
-										:id => product.id, 
+			get "update", :category_id => product.category.id,
+										:id => product.id,
 										:product => { :name => "" }
 			flash[:alert].should == "Could not edit product!\n#{controller.record_invalid_error_message(assigns[:product])}"
 		end

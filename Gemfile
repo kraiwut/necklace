@@ -14,7 +14,7 @@ gem 'state_machine'
 gem 'jquery-datatables-rails'
 gem 'ckeditor'
 gem "carrierwave"
-gem 'rmagick'
+gem 'mini_magick'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -34,13 +34,14 @@ gem 'jquery-rails'
 group :test do
   gem 'capybara'
 	gem 'machinist'
-	gem 'simplecov', :require => false
+	# gem 'simplecov', :require => false
   gem 'email_spec'
   gem 'nokogiri'
+  gem 'test-unit', '~> 3.0'
 end
 
 group :test, :development do
-  gem 'rspec-rails', "~> 2.0"
+  gem 'rspec-rails'
   gem 'rspec-mocks'
 end
 

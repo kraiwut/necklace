@@ -1,7 +1,7 @@
-require 'simplecov'
-SimpleCov.start 'rails' do
-  add_filter '/lib/tasks/' # SimpleCov couldn't detect, although we test it.
-end
+# require 'simplecov'
+# SimpleCov.start 'rails' do
+#   add_filter '/lib/tasks/' # SimpleCov couldn't detect, although we test it.
+# end
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
@@ -15,6 +15,7 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 RSpec.configure do |config|
   config.include ProductsSpecHelper
+  config.infer_spec_type_from_file_location!
   # ## Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
