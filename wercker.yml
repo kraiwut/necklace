@@ -24,5 +24,11 @@ build:
         - bundle-install
         - rails-database-yml
         - script:
+            name: migrate
+            code: bundle exec rake db:migrate
+        - script:
+            name: prepare test db
+            code: bundle exec rake db:test:preapre
+        - script:
             name: rspec
             code: bundle exec rspec
