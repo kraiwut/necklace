@@ -1,22 +1,22 @@
 box: ruby
 services:
-    - postgres
+  - postgres
 build:
-    steps:
-        - bundle-install
-        - rails-database-yml
-        - script:
-            name: create db
-            code: bundle exec rake db:create RAILS_ENV=test
-        - script:
-            name: migrate
-            code: bundle exec rake db:migrate RAILS_ENV=test
-        - script:
-            name: rspec
-            code: bundle exec rspec
+  steps:
+    - bundle-install
+    - rails-database-yml
+    - script:
+      name: create db
+      code: bundle exec rake db:create RAILS_ENV=test
+    - script:
+      name: migrate
+      code: bundle exec rake db:migrate RAILS_ENV=test
+    - script:
+      name: rspec
+        code: bundle exec rspec
 deploy-heroku-dev:
   steps:
     - heroku-deploy:
-        key: $HEROKU_KEY
-        user: $HEROKU_USER
-        app-name: $HEROKU_APP_NAME
+      key: $HEROKU_KEY
+      user: $HEROKU_USER
+      app-name: $HEROKU_APP_NAME
